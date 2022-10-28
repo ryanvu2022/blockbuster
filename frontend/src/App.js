@@ -19,7 +19,7 @@ function App() {
    return (
       <Container maxWidth="lg">
          <AppBar className={classes.appBar} position="static" color="inherit">
-            <Typography className={classes.heading} variant="h2" align="center">Movies</Typography>
+            <Typography className={classes.heading} variant="h2" align="center">Blockbuster</Typography>
             <img className={classes.image} src={camera} alt="memories" height="80" width="80"/>
          </AppBar>
          <Grow in>
