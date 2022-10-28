@@ -1,6 +1,6 @@
 # movies-review-app
 
-## **Live Version**: https://movies-review-12.netlify.app/  
+## **Live Version**: https://blockbuster-12.netlify.app/ 
 This app is built using React, Redux (Redux Toolkit), Axios, Material-UI, Node, Express, MongoDB, Mongoose.  
 Frontend was published using Netlify, Backend was hosted on Heroku, and Database is stored and managed by MongoDB Atlas.  
 
