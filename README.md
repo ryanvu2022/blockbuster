@@ -1,8 +1,9 @@
-# movies-review-app
+# Blockbuster
 
-## **Live Version**: https://movies-review-12.netlify.app/  
+## **Live Version**: http://blockbuster12.com/
+This is a movies review app that allows user to post reviews about any movie.  
 This app is built using React, Redux (Redux Toolkit), Axios, Material-UI, Node, Express, MongoDB, Mongoose.  
-Frontend was published using Netlify, Backend was hosted on Heroku, and Database is stored and managed by MongoDB Atlas.  
+Backend was hosted on Railway, Database is stored and managed by MongoDB Atlas, and Front End was deployed using AWS S3.
 
 ### Getting Started with Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
