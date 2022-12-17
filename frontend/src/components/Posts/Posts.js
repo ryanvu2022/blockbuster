@@ -4,12 +4,11 @@ import { useSelector } from "react-redux";
 import CircularProgress from '@mui/joy/CircularProgress';
 import { Grid } from "@mui/material";
 
-
-const Posts = ({ setCurrentId }) => {     // Destructuring props: const { setCurrentId } = props
+const Posts = ({ setCurrentId }) => {    
    const { posts } = useSelector((store) => store.posts);
 
    return (
-      !posts.length ? <CircularProgress /> : (
+      !posts.length ? <CircularProgress variant="plain" /> : (
          <Grid container display="flex" justifyContent="space-between" alignItems="stretch" spacing={3}>
             {posts.map(post => (
                <Grid item key={post._id} xs={12} sm={6}>

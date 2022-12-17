@@ -5,7 +5,7 @@ import FileBase from "react-file-base64";
 import {useDispatch, useSelector} from "react-redux";
 import {createPost, updatePost} from "../../actions/posts"
 
-function Form({ currentId, setCurrentId }) {    // Destructuring props: const { currentId, setCurrentId } = props
+function Form({ currentId, setCurrentId }) {   
    const {classes} = useStyles();
    const [postData, setPostData] = useState({ creator: "", title: "", message: "", tags: "", selectedFile: "" })
    const post = useSelector((state) => currentId ? state.posts.posts.find((p) => p._id === currentId) : null);
@@ -49,7 +49,7 @@ function Form({ currentId, setCurrentId }) {    // Destructuring props: const { 
             <Typography variant="h6" textAlign="center">{currentId ? 'Editting' : 'Creating'} a Review</Typography>
             <TextField name="creator" variant="outlined" label="Creator" fullWidth value={postData.creator} onChange={handleChange} />
             <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={handleChange} />
-            <TextField name="message" variant="outlined" label="Message" fullWidth value={postData.message} onChange={handleChange} />
+            <TextField name="message" multiline variant="outlined" label="Message" fullWidth value={postData.message} onChange={handleChange} />
             <TextField name="tags" variant="outlined" label="Tags" fullWidth value={postData.tags} 
                        onChange={(e => setPostData({...postData, tags: e.target.value.split(',')}))} />
             <div className={classes.fileInput}>

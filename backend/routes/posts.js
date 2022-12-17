@@ -3,12 +3,10 @@ import { getPosts, createPosts, updatePost, deletePost, likePost } from "../cont
 
 const router = express.Router();
 
-router.get("/", getPosts);  // localhost:5000/posts
+router.get("/", getPosts);
 router.post("/", createPosts);
 router.patch("/:id", updatePost);
 router.delete("/:id", deletePost);
 router.patch("/:id/likePost", likePost);
 
 export default router;
-
-// All the routes that have to do something with posts, which call the functions inside controllers
