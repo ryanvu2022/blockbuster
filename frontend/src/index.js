@@ -16,7 +16,7 @@ const store = configureStore({
 
 createRoot(document.getElementById("root")).render(
    <React.StrictMode>
-      <GoogleOAuthProvider clientId="421308644799-q2puf5g54up7j8jba217aihrrug600tc.apps.googleusercontent.com">
+      <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
          <Provider store={store}>            
             <App />
          </Provider>
