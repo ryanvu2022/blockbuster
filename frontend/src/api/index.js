@@ -1,16 +1,18 @@
 import axios from "axios";
 
-// const url = "http://localhost:5000/posts";
-const url = "https://blockbuster-backend-api-production.up.railway.app/posts";
+const API = axios.create({ baseURL: "http://localhost:5000" });
 
-const fetchPosts = () => axios.get(url);
+const fetchPosts = () => API.get("/posts");
 
-const createPost = (newPost) => axios.post(url, newPost);
+const createPost = (newPost) => API.post("/posts", newPost);
 
-const updatePost = (id, updatedPost) => axios.patch(`${url}/${id}`, updatedPost);
+const updatePost = (id, updatedPost) => API.patch(`/posts/${id}`, updatedPost);
 
-const deletePost = (id) => axios.delete(`${url}/${id}`);
+const deletePost = (id) => API.delete(`/posts/${id}`);
 
-const likePost = (id) => axios.patch(`${url}/${id}/likePost`);
+const likePost = (id) => API.patch(`/posts/${id}/likePost`);
 
-export {fetchPosts, createPost, updatePost, deletePost, likePost}; 
+const signin = (inputText) => API.post("/user/signin", inputText);
+const signup = (inputText) => API.post("/user/signup", inputText);
+
+export {fetchPosts, createPost, updatePost, deletePost, likePost, signin, signup}; 

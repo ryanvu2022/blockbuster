@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import { Avatar, Button, Paper, Grid, Typography, Container } from "@mui/material";
 import { LockOutlined } from "@mui/icons-material";
+import { useGoogleLogin } from "@react-oauth/google";
+import { useDispatch } from "react-redux";
+import { signin, signup } from "../../actions/auth";
 import Input from "./Input";
 import useStyles from "./styles";
-import { useGoogleLogin } from "@react-oauth/google";
-// import jwt_decode from "jwt-decode";
-import { useDispatch } from "react-redux";
 import axios from "axios";
 
 const Auth = () => {
    const { classes } = useStyles();
    const dispatch = useDispatch();
    const [showPassword, setShowPassword] = useState(false);
+   const [inputText, setInputText] = useState({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: ""
+   });
 
    const [isSignup, setIsSignup] = useState(false);
 
@@ -19,12 +26,18 @@ const Auth = () => {
       setShowPassword((prev) => !prev )
    }
 
-   const handleSubmit = () => {
-
+   const handleSubmit = (event) => {
+      event.preventDefault();
+      if (isSignup) {
+         dispatch(signup(inputText))
+      } else {
+         dispatch(signin(inputText))
+      }
    }
 
-   const handleChange = () => {
-
+   const handleChange = (event) => {
+      const { name, value } = event.target;
+      setInputText({ ...inputText, [name]: value });
    }
    
    const switchMode = () => {
@@ -59,14 +72,14 @@ const Auth = () => {
                   {
                   isSignup && (
                      <>
-                        <Input name="firstname" label="First Name" handleChange={handleChange} autoFocus half />
-                        <Input name="lastname" label="Last Name" handleChange={handleChange} half />                     
+                        <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half value={inputText.firstName}/>
+                        <Input name="lastName" label="Last Name" handleChange={handleChange} half value={inputText.lastName}/>                     
                      </>
                   )
                   }
-                  <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
-                  <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword}/>
-                  {isSignup && <Input name="confirmPassword" label="Confirm Password" handleChange={handleChange} type="password"/>}
+                  <Input name="email" label="Email Address" handleChange={handleChange} type="email" value={inputText.email} />
+                  <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} value={inputText.password}/>
+                  {isSignup && <Input name="confirmPassword" label="Confirm Password" handleChange={handleChange} type="password" value={inputText.confirmPassword}/>}
                </Grid>
                
                <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>

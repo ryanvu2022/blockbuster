@@ -61,4 +61,4 @@ const likePost = (id) => async(dispatch) => {
    }
 }
 
-export {getPosts, createPost, updatePost, deletePost, likePost};
+export { getPosts, createPost, updatePost, deletePost, likePost };

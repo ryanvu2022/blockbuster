@@ -4,7 +4,8 @@ import express from "express";
 import bodyParser from "body-parser"
 import mongoose from "mongoose";
 import cors from "cors";
-import router from "./routes/posts.js";
+import postRoutes from "./routes/posts.js";
+import userRoutes from "./routes/users.js";
 
 const app = express();
 
@@ -12,7 +13,8 @@ app.use(bodyParser.urlencoded({extended: true, limit: "30mb"}));
 app.use(bodyParser.json({extended: true, limit: "30mb"}));
 app.use(cors());
  
-app.use('/posts', router);
+app.use("/posts", postRoutes);
+app.use("/user", userRoutes)
 
 app.get('/', (req, res) => {
    res.send("<h1>Hello! Welcome to the Blockbuster REST API.</h1>");

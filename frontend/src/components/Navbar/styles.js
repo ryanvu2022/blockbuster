@@ -1,5 +1,5 @@
 import { makeStyles } from "tss-react/mui";
-import { deepPurple } from '@mui/material/colors';
+import { deepPurple } from "@mui/material/colors";
 
 const useStyles = makeStyles()((theme) => {
    return {
@@ -35,7 +35,7 @@ const useStyles = makeStyles()((theme) => {
       },
       profile: {
          display: 'flex',
-         justifyContent: 'space-between',
+         justifyContent: 'space-evenly',
          width: '400px',
          alignItems: 'center',
          [theme.breakpoints.down('sm')]: {

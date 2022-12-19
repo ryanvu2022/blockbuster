@@ -10,8 +10,8 @@ const authReducers = (state = { authData: null }, action) => {
          return {...state, authData: null};
       case "SIGNIN":
       case "SIGNUP":
-         window.localStorage.setItem("profile", JSON.stringify(action.payload.user));
-         return {...state, authData: action.payload.user};     
+         window.localStorage.setItem("profile", JSON.stringify(action?.payload.user));
+         return {...state, authData: action?.payload.user};     
       default:
          return state;
    }
