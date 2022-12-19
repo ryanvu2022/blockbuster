@@ -1,4 +1,5 @@
 import { makeStyles } from "tss-react/mui";
+import { red } from "@mui/material/colors";
 
 const useStyles = makeStyles()((theme) => {
    return {
@@ -24,6 +25,10 @@ const useStyles = makeStyles()((theme) => {
       },
       submit: {
          margin: theme.spacing(2, 0, 2),
+      },
+      googleButton: {
+         marginBottom: theme.spacing(2),
+         backgroundColor: red,
       },
    };
 });

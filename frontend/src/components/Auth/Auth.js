@@ -3,9 +3,10 @@ import { Avatar, Button, Paper, Grid, Typography, Container } from "@mui/materia
 import { LockOutlined } from "@mui/icons-material";
 import Input from "./Input";
 import useStyles from "./styles";
-import { GoogleLogin } from "@react-oauth/google";
-import jwt_decode from "jwt-decode";
+import { useGoogleLogin } from "@react-oauth/google";
+// import jwt_decode from "jwt-decode";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 const Auth = () => {
    const { classes } = useStyles();
@@ -30,15 +31,22 @@ const Auth = () => {
       setIsSignup((prev) => !prev)
    }
 
-   const googleSuccess = (credentialResponse) => {
-      var decoded = jwt_decode(credentialResponse.credential)       
-      try {
-         dispatch({ type: "AUTH", payload: decoded})
-      } catch (error) {
-         console.log(error)
-      }       
-      window.location.replace("/");     
-   }
+   const login = useGoogleLogin({
+      onSuccess: async tokenResponse => {
+         try {
+            const res = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
+               headers: {
+                  "Authorization": `Bearer ${tokenResponse.access_token}`
+               }
+            })
+            dispatch({ type: "AUTH", payload: res.data})
+            window.location.replace("/");            
+         } catch (error) {
+            console.log(error);
+         }
+      }
+   });
+
    return (
       <Container component="main" maxWidth="xs">
          <Paper className={classes.paper} elevation={3}>
@@ -64,19 +72,8 @@ const Auth = () => {
                <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
                   {isSignup? "Sign Up" : "Sign In"}
                </Button>
-               
-               <GoogleLogin
-                  text="Sign in with Google"
-                  width="364"
-                  theme="filled_blue"
-                  size="large"
-                  shape="rectangular"
-                  onSuccess={googleSuccess}
-                  onError={() => {
-                     console.log("Login Failed");
-                  }}
-               />
-                              
+               <Button id="google" className={classes.googleButton} color="primary" fullWidth variant="contained" onClick={() => login()}>Sign in with Google</Button>  
+                           
                <Grid container justifyContent="flex-end">
                   <Grid item>
                      <Button onClick={switchMode}>

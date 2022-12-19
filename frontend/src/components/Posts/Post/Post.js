@@ -1,6 +1,6 @@
 import React from "react";
 import useStyles from "./styles";
-import {Card, CardActions, CardContent, CardMedia, Button, Typography} from "@mui/material";
+import { Card, CardActions, CardContent, CardMedia, Button, Typography } from "@mui/material";
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { deletePost, likePost } from "../../../actions/posts";
 
 function Post({ post, setCurrentId }) { 
-   const {classes} = useStyles();
+   const { classes } = useStyles();
    const dispatch = useDispatch();
 
    return (
