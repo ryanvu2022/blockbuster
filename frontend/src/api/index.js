@@ -1,6 +1,14 @@
 import axios from "axios";
 
+// Replace baseURL with API.
 const API = axios.create({ baseURL: "http://localhost:5000" });
+
+API.interceptors.request.use((req) => {
+   if (localStorage.getItem("profile")) {
+      req.headers.sub = JSON.parse(localStorage.getItem("profile")).sub ? JSON.parse(localStorage.getItem("profile")).sub : JSON.parse(localStorage.getItem("profile"))._id
+   }
+   return req;
+});
 
 const fetchPosts = () => API.get("/posts");
 

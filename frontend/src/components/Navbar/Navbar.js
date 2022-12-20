@@ -9,7 +9,7 @@ const Navbar = () => {
    const { classes } = useStyles();
    const dispatch = useDispatch();
 
-   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")))
+   const [user, setUser] = useState(localStorage.getItem("profile") ? JSON.parse(localStorage.getItem("profile")) : null)
 
    const logout = () => {
       dispatch({ type: "LOGOUT" })

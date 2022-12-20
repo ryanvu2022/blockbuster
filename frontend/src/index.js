@@ -7,7 +7,6 @@ import reducers from "./reducers";
 import "./index.css";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
-// Configure Store
 const store = configureStore({
    reducer: {
       posts: reducers
